@@ -21,7 +21,7 @@ const data=context.window.portfolio;
   await page.locator('[data-language="zh"]').click();
   await page.waitForURL('**/?lang=zh');
   if(await page.locator('html').getAttribute('lang')!=='zh-CN')errors.push('Chinese switch failed');
-  if(!(await page.locator('.hero h1').innerText()).includes('王天一'))errors.push('Chinese home missing');
+  if((await page.locator('.hero h1').innerText()).trim()!=='Tianyi Wang')errors.push('Home name should be English only');
   await page.screenshot({path:path.join(out,'home-zh-first-screen.png')});
   await page.locator('.hero-links a').first().click();
   if(await page.locator('html').getAttribute('lang')!=='zh-CN')errors.push('Language not retained during navigation');

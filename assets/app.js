@@ -81,21 +81,23 @@
     }
   }
   window.translateSite?.();
+  document.querySelector('.brand > span:last-child').textContent='Tianyi Wang';
+  document.querySelector('.brand').setAttribute('aria-label',`Tianyi Wang ${locale==='en'?'home':'首页'}`);
+  const heroTitle=document.querySelector('.hero h1');
+  if(heroTitle)heroTitle.textContent='Tianyi Wang';
+  document.querySelector('.footer-inner strong').textContent='Tianyi Wang';
+  const contactName=document.querySelector('.contact-card h2');
+  if(contactName)contactName.textContent='Tianyi Wang';
   if(locale==='en') {
-    document.querySelector('.brand > span:last-child').innerHTML='Tianyi Wang<span class="brand-sub">王天一</span>';
-    const heroTitle=document.querySelector('.hero h1');
-    if(heroTitle)heroTitle.innerHTML='Tianyi Wang<span>王天一</span>';
-    document.querySelector('.footer-inner strong').innerHTML='Tianyi Wang <span>王天一</span>';
-    const contactName=document.querySelector('.contact-card h2');
-    if(contactName)contactName.textContent='Tianyi Wang';
     document.title=window.translateText(document.title).replaceAll('王天一','Tianyi Wang');
     const description=document.querySelector('meta[name="description"]');
     description.content=page==='project'?window.portfolioEnglishProjects[id]?.summary||description.content:'Tianyi Wang’s research portfolio: education, machine learning experiments, AI agents, quantitative finance, professional experience and writing.';
   } else {
     const pageTitles={home:'总览',projects:'研究与项目',experience:'实习经历',education:'教育背景',writing:'写作与思考',contact:'联系与简历'};
-    if(pageTitles[page])document.title=`${pageTitles[page]} | 王天一 · Tianyi Wang`;
+    if(pageTitles[page])document.title=`${pageTitles[page]} | Tianyi Wang`;
     if(page!=='project')document.querySelector('meta[name="description"]').content='王天一的研究与技术实践作品集：教育背景、机器学习实验、AI 智能体、量化金融、实习经历与公众号文章。';
   }
+  document.title=document.title.replaceAll('王天一','Tianyi Wang');
   document.querySelectorAll('[data-language]').forEach(button=>button.addEventListener('click',()=>{
     const next=button.dataset.language;
     try{localStorage.setItem('tianyi-portfolio-language',next);}catch(_){}
